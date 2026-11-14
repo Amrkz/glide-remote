@@ -1,0 +1,193 @@
+/* Shared look for the Glide Remote support site.
+   Light colors are on :root. Dark colors are in the block below.
+   To recolor the site, change those variables. */
+
+:root {
+  color-scheme: light dark;
+  --bg: #f4f6f8;
+  --ink: #17202b;
+  --muted: #3d4a5c;
+  --link: #0b4f86;
+  --line: #d5dee8;
+  --notice-bg: #e7eef6;
+  --nav-current: #e1eaf3;
+  --focus: #0b4f86;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10151b;
+    --ink: #eef3f8;
+    --muted: #c5d0dc;
+    --link: #a9cffc;
+    --line: #2c3846;
+    --notice-bg: #182430;
+    --nav-current: #223140;
+    --focus: #a9cffc;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--bg); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  transform: translateY(-200%);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.5rem 0.75rem;
+  z-index: 5;
+  text-decoration: none;
+}
+
+.skip:focus { transform: none; }
+
+.wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding-left: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding-top: env(safe-area-inset-top);
+}
+
+.header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.15rem;
+}
+
+nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+nav a[aria-current="page"] {
+  background: var(--nav-current);
+}
+
+main { padding-top: 2.25rem; padding-bottom: 3rem; }
+
+h1 {
+  margin: 0.35rem 0 0.6rem;
+  font-size: clamp(1.8rem, 5vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 2.4rem 0 0.6rem;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+p, ul { margin: 0.7rem 0; }
+
+.lead { font-size: 1.125rem; }
+
+.updated { color: var(--muted); margin-top: 0; }
+
+.notice {
+  background: var(--notice-bg);
+  border-left: 4px solid var(--link);
+  border-radius: 0 12px 12px 0;
+  padding: 0.9rem 1rem;
+  margin: 1.4rem 0 0.4rem;
+}
+
+ul { padding-left: 1.25rem; }
+
+li + li { margin-top: 0.35rem; }
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  overflow-wrap: break-word;
+}
+
+main a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+main a:visited { color: var(--link); }
+
+.contact a {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 1.4rem;
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+  color: var(--muted);
+}
+
+.site-footer p { margin: 0.4rem 0; }
+
+.site-footer a,
+.site-footer a:visited {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+@media print {
+  .skip, nav { display: none; }
+  body { background: #fff; color: #000; }
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+  }
+}
